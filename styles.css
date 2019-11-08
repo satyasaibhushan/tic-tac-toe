@@ -12,3 +12,14 @@ td{
     font-size: 70px;
 
 }
+
+* .hide{
+    display: none;
+}
+*.show{
+    text-align: center;
+}
+body{
+    max-width: 500px;
+    max-height: 500px;
+}
