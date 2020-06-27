@@ -8,25 +8,12 @@ var size = 3,
   k,
   x3 = "XXX",
   o3 = "OOO",
+  difficulty = 0,
   x = 1;
 var game = document.getElementById("game");
 var board = document.getElementById("game_board");
-var players = document.getElementsByName("player_no.");
-var p1 = document.getElementById("no.players");
-var turn1 = document.getElementById("turn1");
-var turns = document.getElementsByName("radio");
-var first = document.getElementById("first");
-var firsts = document.getElementsByName("first");
 var playersv, turnsv;
 // turnsv is used for keeping the record of player 1 for next game
-
-players[1].addEventListener("click", clickButton);
-players[0].addEventListener("click", clickButton);
-turns[0].addEventListener("click", clickButton1);
-turns[1].addEventListener("click", clickButton1);
-firsts[0].addEventListener("click", clickButton2);
-firsts[1].addEventListener("click", clickButton2);
-
 var idt = 1;
 for (let i = 0; i < size; i++) {
   var row = document.createElement("tr");
@@ -44,58 +31,14 @@ for (let i = 0; i < size; i++) {
     ele.identifier = x;
     ele.setAttribute("align", "center");
     ele.setAttribute("valign", "center");
-    ele.addEventListener("click", set);
+    ele.addEventListener("click", setContent);
     row.appendChild(ele);
     x++;
     boxes.push(ele);
   }
 }
 // for the no.of players
-function clickButton() {
-  for (let s = 0; s < 2; s++) {
-    if (players[s].checked) {
-      playersv = s + 1;
-      if (playersv == 1) {
-        turntext.innerHTML = "Would you like to be X or O? ";
-      }
-      turn1.className = "show";
-      p1.className = "hide";
-      console.log("no.of players is " + playersv);
-    }
-  }
-}
-function clickButton1() {
-  for (let s = 0; s < 2; s++) {
-    if (turns[s].checked) {
-      turn1.className = "hide";
-      turnsv = s == 0 ? "X" : "O";
-      if (playersv == 2) {
-        game.className = "show";
-        startover();
-        turn = turnsv;
-        document.getElementById("text").textContent = turn;
-      } else {
-        first.className = "show";
-      }
-    }
-  }
-}
 
-function clickButton2() {
-  for (let s = 0; s < 2; s++) {
-    if (firsts[s].checked) {
-      first.className = "hide";
-      k = turnsv == "X" ? "O" : "X";
-
-      turnsv = s == 1 ? k : turnsv;
-      k1 = s;
-      game.className = "show";
-      startover();
-      turn = turnsv;
-      document.getElementById("text").textContent = turn;
-    }
-  }
-}
 function startover() {
   score = {
     X: 0,
@@ -107,22 +50,10 @@ function startover() {
   boxes.forEach(function (square) {
     square.innerHTML = "&nbsp;";
   });
-  computer();
+  computerMove();
 }
 
-function find(a) {
-  free.splice(0, free.length);
-  for (let b = 0; b < size * size; b++) {
-    if (boxes[b].innerHTML == "&nbsp;") {
-      free.push(b);
-    }
-  }
-  var f = Math.floor(Math.random() * free.length);
-  boxes[free[f]].innerHTML = a;
-  return boxes[free[f]];
-}
-
-function win(player) {
+function checkIfWin(player) {
   var classname = player.className.split(/\s+/);
   var string = [];
   for (let i = 0; i < classname.length; i++) {
@@ -140,38 +71,23 @@ function win(player) {
   return 0;
 }
 
-function computer() {
-  if ((playersv == 1 && k1 == 0 && moves % 2 == 1) || (playersv == 1 && k1 == 1 && moves % 2 == 0)) {
-    var v = find(turn);
-    fn(v, winif);
-    moves++;
-    setTimeout(() => {
-      turn = turn == "X" ? "O" : "X";
-      document.getElementById("text").textContent = turn;
-    }, 10);
-
-    // due to the time taken to complete function clickbutton2 is significant
-    //and computer function is called in function clickbutton1 itself
-  }
-}
-
-function set() {
+function setContent() {
   if (playersv == 2 || (playersv == 1 && k1 == 0 && moves % 2 == 0) || (playersv == 1 && k1 == 1 && moves % 2 == 1)) {
     if (this.innerHTML != "&nbsp;") return;
     moves++;
 
-    fn(this, winif);
+    writeAndDeclare(this);
     turn = turn == "X" ? "O" : "X";
     document.getElementById("text").textContent = turn;
     setTimeout(() => {
-      computer();
+      computerMove();
     }, 1000);
   } else {
   }
 }
 
-function winif(a) {
-  if (win(a)) {
+function declareWinner(a) {
+  if (checkIfWin(a)) {
     turn = turn == "X" ? "O" : "X";
     alert("And the winner is player " + turn);
     startover();
@@ -181,9 +97,9 @@ function winif(a) {
     startover();
   }
 }
-function fn(a, callback) {
+function writeAndDeclare(a) {
   a.innerHTML = turn;
   setTimeout(() => {
-    callback(a);
+    declareWinner(a)
   }, 100);
 }
