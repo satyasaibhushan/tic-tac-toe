@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script src="https://kit.fontawesome.com/35ba577ae6.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <title>Tic-Tac-Toe</title>
-</head>
-<body >
+  </head>
+  <body>
     <div id="no.players" class="show">
-            Select the no.of players
-            <br><br>
-            <input type="radio" name="player_no." value="1">1
-            <input type="radio" name="player_no." value="2">2
-        </div>
+      Select the no.of players
+      <br /><br />
+      <input type="radio" name="player_no." value="1" />1 <input type="radio" name="player_no." value="2" />2
+    </div>
 
-   <div id="turn1" class="hide">
-       <div id="turntext">
+    <div id="turn1" class="hide">
+      <div id="turntext">
         What is your first preference: X or O?
-       </div><br>
-      <input type="radio" name="radio" value="X">X
-      <input type="radio" name="radio" value="O">O
+      </div>
+      <br />
+      <input type="radio" name="radio" value="X" />X <input type="radio" name="radio" value="O" />O
     </div>
     <div id="first" class="hide">
-        <div >
-           Would you like to play first?
-        </div><br>
-        <input type="radio" name="first" value="Yes">Yes
-        <input type="radio" name="first" value="No">No
-     </div>   
-
-    <div id="game" class = "hide">
-        <table id="game_board"></table>
-        <div> Player <span id="text"></span> 's turn</div>
+      <div>
+        Would you like to play first?
+      </div>
+      <br />
+      <input type="radio" name="first" value="Yes" />Yes <input type="radio" name="first" value="No" />No
     </div>
-    
+
+    <div id="game" class="hide">
+      <table id="game_board"></table>
+      <div class="turnText">Player <span id="text"></span> 's turn</div>
+    </div>
+
     <script type="text/javascript" src="main.js"></script>
-</body>
+  </body>
 </html>

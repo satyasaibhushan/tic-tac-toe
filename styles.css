@@ -1,25 +1,29 @@
-table{
-    border: 10px solid black;
-    border-collapse:collapse;
+table {
+  border: 10px solid black;
+  border-collapse: collapse;
 }
 
-td{
-    height : 120px;
-    width: 120px;
-    background-color: rgb(250, 199, 127);
-    border:10px solid rgb(248, 77, 77);
-    border-radius: 10px 10px 10px 10px ;
-    font-size: 70px;
-
+td {
+  height: 120px;
+  width: 120px;
+  background-color: rgb(250, 199, 127);
+  border: 10px solid rgb(248, 77, 77);
+  border-radius: 10px 10px 10px 10px;
+  font-size: 70px;
 }
 
-* .hide{
-    display: none;
+* .hide {
+  display: none;
 }
-*.show{
-    text-align: center;
+*.show {
+  text-align: center;
 }
-body{
-    max-width: 500px;
-    max-height: 500px;
+body {
+  max-width: 500px;
+  max-height: 500px;
+}
+.turnText {
+  position: relative;
+  left: 50%;
+  transform: translate(-58%,0);
 }
