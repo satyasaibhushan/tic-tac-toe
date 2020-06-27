@@ -1,4 +1,4 @@
-var size = 3,
+var size = 5,
   turn,
   moves = 0,
   free = [],
@@ -69,17 +69,17 @@ function checkIfWin(array, index) {
   let rowNumber = (index - colNumber) / size;
   let string = "";
 
-  if (rowNumber + colNumber == size-1) {
+  if (rowNumber + colNumber == size - 1) {
     string = "";
     array.forEach((element, i) => {
-      if ((i - (i % size)) / size + (i % size) == size-1 ) string += element;
+      if ((i - (i % size)) / size + (i % size) == size - 1) string += element;
     });
     if (string == xn || string == on) return 1;
   }
   if (rowNumber == colNumber) {
     string = "";
     array.forEach((element, i) => {
-      if ((i - (i % size)) / size == (i % size)) string += element;
+      if ((i - (i % size)) / size == i % size) string += element;
     });
     if (string == xn || string == on) return 1;
   }
@@ -131,7 +131,6 @@ function index(a) {
   return index;
 }
 function writeAndDeclare(a) {
-
   a.innerHTML = turn;
   boxValues[index(a)] = turn;
   setTimeout(() => {
