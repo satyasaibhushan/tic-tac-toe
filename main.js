@@ -1,4 +1,4 @@
-var size = 4,
+var size = 3,
   turn,
   moves = 0,
   free = [],
@@ -9,7 +9,7 @@ var size = 4,
   k,
   xn = "",
   on = "",
-  difficulty = 0,
+  difficulty = 10,
   x = 1;
 var game = document.getElementById("game");
 var board = document.getElementById("game_board");
@@ -65,7 +65,6 @@ function startover() {
 }
 
 function checkIfWin(array, index) {
-  // console.log(boxes[index].className)
   let colNumber = index % size;
   let rowNumber = (index - colNumber) / size;
   let string = "";
@@ -132,8 +131,8 @@ function index(a) {
   return index;
 }
 function writeAndDeclare(a) {
-  a.innerHTML = turn;
 
+  a.innerHTML = turn;
   boxValues[index(a)] = turn;
   setTimeout(() => {
     declareWinner(a);
