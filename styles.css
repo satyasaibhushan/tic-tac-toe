@@ -1,15 +1,19 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 table {
   border: 10px solid black;
   border-collapse: collapse;
 }
 
 td {
-  height: 120px;
   width: 120px;
   background-color: rgb(250, 199, 127);
   border: 10px solid rgb(248, 77, 77);
   border-radius: 10px 10px 10px 10px;
-  font-size: 70px;
+  /* font-size: 70px; */
 }
 
 * .hide {
@@ -18,12 +22,14 @@ td {
 *.show {
   text-align: center;
 }
-body {
-  max-width: 500px;
-  max-height: 500px;
-}
+
 .turnText {
   position: relative;
   left: 50%;
   transform: translate(-58%,0);
 }
+#game_board{
+  max-width: 800px;
+  max-height: 800px;
+}
+

@@ -30,6 +30,11 @@ function bestMove(){
       return  Math.floor(Math.random() * free.length);
     }
 
+    else if(difficulty>0){
+        console.log('applying Minimax')
+        
+    }
+
 }
 
 
